@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35506.116 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CmsUI", "CmsUI\CmsUI.csproj", "{FBAF98B6-6926-4584-A845-914F9CFB6D8C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{38DFC948-D2C5-487D-A793-BE6D0E2E89D3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{454EE10F-7F97-4616-85D9-F3F0FF183B73}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{6C7666E8-EBD5-4561-A2E5-744BADD83F39}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{A7787AF9-2332-477C-B3A9-7B8132A66E16}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FBAF98B6-6926-4584-A845-914F9CFB6D8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBAF98B6-6926-4584-A845-914F9CFB6D8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBAF98B6-6926-4584-A845-914F9CFB6D8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBAF98B6-6926-4584-A845-914F9CFB6D8C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FBAF98B6-6926-4584-A845-914F9CFB6D8C} = {38DFC948-D2C5-487D-A793-BE6D0E2E89D3}
+		{6C7666E8-EBD5-4561-A2E5-744BADD83F39} = {454EE10F-7F97-4616-85D9-F3F0FF183B73}
+		{A7787AF9-2332-477C-B3A9-7B8132A66E16} = {454EE10F-7F97-4616-85D9-F3F0FF183B73}
+	EndGlobalSection
+EndGlobal
