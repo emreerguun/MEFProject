@@ -10847,9 +10847,14 @@ body {
 }
 
 #layoutAuthentication {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+    background-image: url('../images/login-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat-y;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
 }
 #layoutAuthentication #layoutAuthentication_content {
   min-width: 0;
