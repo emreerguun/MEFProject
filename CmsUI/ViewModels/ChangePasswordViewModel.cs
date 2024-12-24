@@ -17,7 +17,7 @@ namespace CmsUI.ViewModels
 
         [Required(ErrorMessage = "Confirm password is required.")]
         [DataType(DataType.Password)]
-        [Display(Name ="Confirm new password.")]
+        [Display(Name ="Confirm new password")]
         public string ConfirmNewPassword { get; set; }
     }
 }
