@@ -138,5 +138,11 @@ namespace CmsUI.Controllers
                 return View(model);
             }
         }
+
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Login", "Account");
+        }
     }
 }
