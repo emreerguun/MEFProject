@@ -14,8 +14,13 @@
                     <form asp-controller="Account" asp-action="Register" method="post">
                         <div class="form-floating mb-3">
                             <input class="form-control" asp-for="FirstName" />
-                            <label asp-for="FirstName"></label>
+                            <label asp-for="FirstName">First name</label>
                             <span asp-validation-for="FirstName" class="text-danger small"></span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input class="form-control" asp-for="LastName" />
+                            <label asp-for="LastName">Last name</label>
+                            <span asp-validation-for="LastName" class="text-danger small"></span>
                         </div>
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-floating mb-3">
@@ -24,8 +29,8 @@
                             <span asp-validation-for="Email" class="text-danger small"></span>
                         </div>
                         <div class="form-floating mb-3">
-                            <input class="form-control" asp-for="PasswordHash" />
-                            <label asp-for="PasswordHash"></label>
+                            <input class="form-control" asp-for="PasswordHash" type="password"/>
+                            <label asp-for="PasswordHash">Password</label>
                             <span asp-validation-for="PasswordHash" class="text-danger small"></span>
                         </div>
                        @*  <div class="form-floating mb-3">
