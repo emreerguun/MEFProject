@@ -7,7 +7,7 @@ public class EmailService
 {
     private readonly string _sendGridApiKey;
 
-    //burada configuration bilgileri appsettingsten alınacak. TODO.
+    //TO-DO:burada configuration bilgileri appsettingsten alınacak.
     public EmailService(/*IConfiguration configuration*/)
     {
         //_sendGridApiKey = configuration["SendGrid:ApiKey"];

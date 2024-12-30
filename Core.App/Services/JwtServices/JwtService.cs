@@ -21,13 +21,8 @@ public class JwtService
         _expireMinutes = int.Parse(_configuration["Jwt:ExpireMinutes"]);
     }
 
-    public string GenerateToken(string username)
+    public string GenerateToken(List<Claim> claims)
     {
-        var claims = new[]
-        {
-            new Claim(ClaimTypes.Name, username)
-        };
-
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secretKey));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 

@@ -1,6 +1,7 @@
 using Architecture.DbWorks.Contexts;
 using CmsUI.Models;
 using Core.Domain.Entities.Admin;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -23,26 +24,16 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<JwtService>();
 builder.Services.AddScoped<EmailService>();
 // Add other services
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-       .AddJwtBearer(options =>
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+       .AddCookie(options =>
        {
-           options.TokenValidationParameters = new TokenValidationParameters
-           {
-               ValidateIssuer = true,
-               ValidateAudience = true,
-               ValidateLifetime = true,
-               ValidateIssuerSigningKey = true,
-               ValidIssuer = builder.Configuration["Jwt:Issuer"], // appsettings.json'dan alýnan issuer
-               ValidAudience = builder.Configuration["Jwt:Audience"], // appsettings.json'dan alýnan audience
-               IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])) // appsettings.json'dan alýnan key
-           };
+           options.LoginPath = "/Account/Login";  // Giriþ sayfasý
+           options.AccessDeniedPath = "/Account/Login";  // Eriþim reddedildi sayfasý
+           options.SlidingExpiration = true;  // Çerezin geçerliliði
        });
+builder.Services.AddAuthorization();
 
-// Authorization ekleme
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
-});
+
 builder.Services.AddControllersWithViews();
 var app = builder.Build();
 
@@ -59,7 +50,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthentication(); 
-app.UseAuthorization();
+app.UseAuthorization(); 
 
 app.MapStaticAssets();
 

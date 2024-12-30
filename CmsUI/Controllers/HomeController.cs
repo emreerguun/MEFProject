@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CmsUI.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -13,12 +14,10 @@ namespace CmsUI.Controllers
         {
             _logger = logger;
         }
-        [Authorize]
         public IActionResult Index()
         {
             return View();
         }
-        [Authorize]
         public IActionResult Privacy()
         {
             return View();
