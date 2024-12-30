@@ -2,7 +2,6 @@
 using CmsUI.Models;
 using CmsUI.ViewModels;
 using Core.Domain.Entities.Admin;
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -30,7 +29,8 @@ namespace CmsUI.Controllers
             return View();
         }
         //[HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] Admin user)
+        [HttpPost()]
+        public async Task<IActionResult> Register(Admin user)
         {
             if (await _context.Admins.AnyAsync(u => u.Email == user.Email))
                 return BadRequest("Email already exists.");
@@ -38,21 +38,22 @@ namespace CmsUI.Controllers
             user.PasswordHash = HashPassword(user.PasswordHash);
             _context.Admins.Add(user);
             await _context.SaveChangesAsync();
-            return Ok("User registered successfully.");
+            return RedirectToAction("Login", "Account");
         }
         public async Task<IActionResult> Login()
         {
             return View();
         }
         //[HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] Admin user)
+        [HttpPost()]
+        public async Task<IActionResult> Login(Admin user)
         {
             var dbUser = await _context.Admins.FirstOrDefaultAsync(u => u.Email == user.Email);
             if (dbUser == null || !VerifyPassword(user.PasswordHash, dbUser.PasswordHash))
                 return Unauthorized("Invalid credentials.");
 
             var token = _jwtService.GenerateToken(dbUser.FirstName+"-"+dbUser.LastName);
-            return Ok(new { Token = token });
+            return RedirectToAction("Home", "Index", new { Token = token });
         }
 
         //[HttpPost("forgot-password")]
