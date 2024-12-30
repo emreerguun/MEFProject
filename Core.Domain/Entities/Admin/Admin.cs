@@ -1,4 +1,5 @@
 ﻿using Core.Domain.BaseEntities;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,8 +16,10 @@ namespace Core.Domain.Entities.Admin
         [Required]
         public string LastName { get; set; }
         [Required]
-        public string Password { get; set; }
+        public string PasswordHash { get; set; }
         [Required]
         public string Email { get; set; }
+        public string? ResetToken { get; set; }
+        public DateTime? ResetTokenExpires { get; set; }
     }
 }

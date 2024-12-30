@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Architecture.DbWorks\Architecture.DbWorks.csproj" />
+    <ProjectReference Include="..\Core.App\Core.App.csproj" />
   </ItemGroup>
 
 </Project>
