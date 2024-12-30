@@ -11,8 +11,6 @@ using System.Text;
 
 namespace CmsUI.Controllers
 {
-    //[Route("api/[controller]")]
-    //[ApiController]
     public class AccountController : Controller
     {
         private readonly AppDbContext _context;
@@ -28,7 +26,6 @@ namespace CmsUI.Controllers
         {
             return View();
         }
-        //[HttpPost("register")]
         [HttpPost()]
         public async Task<IActionResult> Register(Admin user)
         {
@@ -44,7 +41,6 @@ namespace CmsUI.Controllers
         {
             return View();
         }
-        //[HttpPost("login")]
         [HttpPost()]
         public async Task<IActionResult> Login(Admin user)
         {
@@ -52,11 +48,18 @@ namespace CmsUI.Controllers
             if (dbUser == null || !VerifyPassword(user.PasswordHash, dbUser.PasswordHash))
                 return Unauthorized("Invalid credentials.");
 
-            var token = _jwtService.GenerateToken(dbUser.FirstName+"-"+dbUser.LastName);
-            return RedirectToAction("Home", "Index", new { Token = token });
+            var token = _jwtService.GenerateToken(dbUser.Email);
+
+            Response.Cookies.Append("jwt-admin", token, new CookieOptions { HttpOnly = true, Secure = true });
+            return RedirectToAction("Index", "Home");
         }
 
-        //[HttpPost("forgot-password")]
+        [HttpPost()]
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete("jwt-admin");
+            return RedirectToAction("Login", "Account");
+        }
         public async Task<IActionResult> ForgotPassword([FromBody] string email)
         {
             var user = await _context.Admins.FirstOrDefaultAsync(u => u.Email == email);

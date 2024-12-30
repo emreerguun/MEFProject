@@ -9,9 +9,9 @@
 
   <ItemGroup>
     <Folder Include="CqrsWorks\" />
+    <Folder Include="Helpers\" />
     <Folder Include="Mappings\" />
     <Folder Include="Interfaces\" />
-    <Folder Include="Helpers\" />
     <Folder Include="Enums\" />
     <Folder Include="Dtos\" />
   </ItemGroup>
